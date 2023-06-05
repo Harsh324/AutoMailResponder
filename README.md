@@ -11,19 +11,21 @@ AutoMailResponder is a Node.js-based application that automatically responds to 
 
 ## Setup and Configuration
 
-1. Clone the repository and install dependencies.
-2. Create a Google Cloud project and enable the Gmail API.
-3. Set up the necessary API credentials for accessing the Gmail API.
-4. Configure the app by updating the `config.js` file with your Gmail ID, API credentials, and other settings.
-5. Run the app using `node app.js`.
+1. Clone the repository by using command `git clone https://github.com/Harsh324/AutoMailResponder.git` .
+2. then run `npm install` to Install dependencies.
+3. Create a Google Cloud project and enable the Gmail API.
+4. Set up the necessary API credentials for accessing the Gmail API.
+5. For more insight you can visit [gmail api documentation](https://developers.google.com/gmail/api/quickstart/nodejs)
+5. Download the credentials file form the console and renamne it as `client_secret.json`.
+6. Put the `client_secret.json` file in the [config](config) directory.
+7. Configure the file [mail_config.json](config/mail_config.json) file with your choice of name of label and reply.
+8. Run the app using `node main.js`.
 
-For detailed setup instructions, refer to the [Setup Guide](docs/setup-guide.md).
 
 ## Usage
 
-Once the app is set up and running, it will automatically check your Gmail inbox at random intervals. When a new email thread is detected with no prior responses, the app will send an automated reply and label the email thread accordingly. You can customize the reply message and label name in the configuration.
+Once the app is set up and running, it will automatically check your Gmail inbox at random intervals. When a new email thread is detected with no prior responses, the app will send an automated reply and label the email thread accordingly. You can customize the reply message and label name in the [mail_config file](config/mail_config.json).
 
-For more information on how to customize the app's behavior, refer to the [Configuration Guide](docs/configuration-guide.md).
 
 ## Dependencies
 
@@ -36,10 +38,5 @@ For a complete list of dependencies, refer to the [package.json](package.json) f
 
 ## Contribution
 
-Contributions are welcome! If you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request. Please follow the [contribution guidelines](CONTRIBUTING.md) when making contributions.
+Contributions are welcome! If you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-See [LICENSE](LICENSE) for more information.

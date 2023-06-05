@@ -21,6 +21,8 @@ exports.checkEmails = async () => {
 
     // authentication part 
     const content = await readFileAsync(constant.baseDir()+'/config/client_secret.json'); // reading client credentilas from file
+    const mailContent = await readFileAsync(constant.baseDir()+'/config/mail_config.json'); // reading mail config file
+    const mailCred = JSON.parse(mailContent);
     const credentials = JSON.parse(content);
 
     // Initializing client credentials 
@@ -28,6 +30,7 @@ exports.checkEmails = async () => {
     const clientId = credentials.web.client_id;
     const redirectUrl = credentials.web.redirect_uris[0];
 
+    // using oauth2Client method and setting up it with client credentials
     const oauth2Client = new OAuth2Client(clientId, clientSecret, redirectUrl);
     const token = await readFileAsync(TOKEN_PATH);
     oauth2Client.credentials = JSON.parse(token);
@@ -72,10 +75,10 @@ exports.checkEmails = async () => {
             if (!isThreadReplied) {
 
                 // Send the reply email
-                await app.sendReply(sendersEmail, 'Thank you for your email! I am currently on vacation and will respond to you as soon as possible.');
+                await app.sendReply(sendersEmail, mailCred.mail.reply);
         
                 // Add label to the email thread
-                await app.addLabel(threadId, 'Auto-Replied');
+                await app.addLabel(threadId, mailCred.mail.lableName);
         
                 // Mark the email as read
                 await gmail.users.messages.modify({
