@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Harsh324/AutoMailResponder/issues"
   },
-  "homepage": "https://github.com/Harsh324/AutoMailResponder#readme"
+  "homepage": "https://github.com/Harsh324/AutoMailResponder#readme",
+  "dependencies": {
+    "google-auth-library": "^8.8.0",
+    "googleapis": "^118.0.0"
+  }
 }

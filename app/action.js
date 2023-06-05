@@ -1,7 +1,8 @@
 'use strict';
 
 // importing modules and libraries
-const app = require('./app')
+const app = require('./app');
+const constant = require('./constants');
 const fs = require('fs');
 const {promisify} = require('util');
 const {google} = require('googleapis'); // gmail api
@@ -10,7 +11,7 @@ const gmail = google.gmail('v1');
 
 // reading the token.json consisting of user specifi tokens
 const readFileAsync = promisify(fs.readFile);
-const TOKEN_DIR = __dirname;
+const TOKEN_DIR = constant.baseDir() + '/config';
 const TOKEN_PATH = TOKEN_DIR + '/token.json'; // Specify the access token file
 
 
@@ -19,7 +20,7 @@ const TOKEN_PATH = TOKEN_DIR + '/token.json'; // Specify the access token file
 exports.checkEmails = async () => {
 
     // authentication part 
-    const content = await readFileAsync(__dirname+'/client_secret.json'); // reading client credentilas from file
+    const content = await readFileAsync(constant.baseDir()+'/config/client_secret.json'); // reading client credentilas from file
     const credentials = JSON.parse(content);
 
     // Initializing client credentials 
@@ -87,7 +88,7 @@ exports.checkEmails = async () => {
                 });
 
                 // Output given to the console
-                console.log('Auto-reply sent and labeled for thread ID:', threadId);
+                console.log('Auto-reply sent and labeled for thread ID: '+ threadId+" , To : "+sendersEmail);
             }
         }
     } catch (err) {

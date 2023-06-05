@@ -2,6 +2,7 @@
 
 // importing modules and libraries
 const fs = require('fs');
+const constant = require('./constants');
 const {promisify} = require('util');
 const {google} = require('googleapis'); // gmail api
 const {OAuth2Client} = require('google-auth-library'); // for authentication of user
@@ -10,7 +11,7 @@ const gmail = google.gmail('v1'); // It will assist in api calls
 
 // reading the token.json consisting of user specifi tokens
 const readFileAsync = promisify(fs.readFile);
-const TOKEN_DIR = __dirname;
+const TOKEN_DIR = constant.baseDir() + '/config';
 const TOKEN_PATH = TOKEN_DIR + '/token.json'; // Specify the access token file
 
 
@@ -18,7 +19,7 @@ const TOKEN_PATH = TOKEN_DIR + '/token.json'; // Specify the access token file
 exports.sendReply = async (email, reply) => {
 
     // authentication part 
-    const content = await readFileAsync(__dirname+'/client_secret.json'); 
+    const content = await readFileAsync(constant.baseDir()+'/config/client_secret.json'); 
     const credentials = JSON.parse(content);
 
     // Initializing client credentials 
@@ -52,7 +53,7 @@ exports.sendReply = async (email, reply) => {
 exports.checkPriorReply = async (threadId) => {
 
     // authentication part 
-    const content = await readFileAsync(__dirname+'/client_secret.json'); 
+    const content = await readFileAsync(constant.baseDir()+'/config/client_secret.json'); 
     const credentials = JSON.parse(content);
 
     // Initializing client credentials
@@ -93,7 +94,7 @@ exports.checkPriorReply = async (threadId) => {
 exports.addLabel = async (threadId, labelName) => {
 
     // authentication part 
-    const content = await readFileAsync(__dirname+'/client_secret.json'); 
+    const content = await readFileAsync(constant.baseDir()+'/config/client_secret.json'); 
     const credentials = JSON.parse(content);
 
     // Initializing client credentials 
@@ -104,7 +105,7 @@ exports.addLabel = async (threadId, labelName) => {
     const oauth2Client = new OAuth2Client(clientId, clientSecret, redirectUrl);
     const token = await readFileAsync(TOKEN_PATH);
     oauth2Client.credentials = JSON.parse(token);
-    console.log(oauth2Client.credentials);
+
 
     try {
 

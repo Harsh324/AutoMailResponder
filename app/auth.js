@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const constant = require('./constants');
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
@@ -17,15 +18,15 @@ const writeFileAsync = promisify(fs.writeFile);
 const rlQuestionAsync = promisify(rl.question);
 
 const SCOPES = ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.labels', 'https://www.googleapis.com/auth/gmail.modify'];
-const TOKEN_DIR = __dirname;
-const TOKEN_PATH = TOKEN_DIR+'/config/token.json';
+const TOKEN_DIR = constant.baseDir() + '/config';
+const TOKEN_PATH = TOKEN_DIR+'/token.json';
 
 
 exports.authenticate = async () => {
 
-    const content = await  readFileAsync(__dirname+'/config/client_secret.json');
-    console.log(content);
+    const content = await  readFileAsync(constant.baseDir()+'/config/client_secret.json');
     const credentials = JSON.parse(content); //credential
+    
     //authentication
     const clientSecret = credentials.web.client_secret;
     const clientId = credentials.web.client_id;
