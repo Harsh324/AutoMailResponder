@@ -1,0 +1,20 @@
+{
+  "name": "automailresponder",
+  "version": "1.0.0",
+  "description": "AutoMailResponder is a Node.js-based application that automatically responds to emails sent to your Gmail mailbox while you're on vacation. This app integrates with the Gmail API to check for new emails, send replies to email threads with no prior responses, and add labels to organize and track the processed emails.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Harsh324/AutoMailResponder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Harsh324/AutoMailResponder/issues"
+  },
+  "homepage": "https://github.com/Harsh324/AutoMailResponder#readme"
+}
