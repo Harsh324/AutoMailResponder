@@ -1,12 +1,17 @@
+/**
+ * @module action
+ * consists of @function checkEmails
+ */
+
 'use strict';
 
 // importing modules and libraries
-const app = require('./app');
-const constant = require('./constants');
-const fs = require('fs');
+const app = require('./app');                           // contains the sendEmail addLabel and checkPrior methods
+const constant = require('./constants');                // contains method to set the base directory
+const fs = require('fs');                               // module file handling
 const {promisify} = require('util');
-const {google} = require('googleapis'); // gmail api
-const {OAuth2Client} = require('google-auth-library'); // for authentication of user
+const {google} = require('googleapis');                 // gmail api
+const {OAuth2Client} = require('google-auth-library');  // for authentication of user
 const gmail = google.gmail('v1');
 
 // reading the token.json consisting of user specifi tokens
@@ -16,7 +21,11 @@ const TOKEN_PATH = TOKEN_DIR + '/token.json'; // Specify the access token file
 
 
 
-
+/**
+ * performs the opertion of sending email, and updating the label of the email
+ * @function checkEmails
+ * @memberof module:action
+ */
 exports.checkEmails = async () => {
 
     // authentication part 
@@ -65,7 +74,7 @@ exports.checkEmails = async () => {
 
             const sendersHeader = emailData.data.payload.headers.find((header) => header.name === 'From').value;
 
-            // Parsing the Header and fetching the senders emails address
+            // Parsing the Header and fetching the senders email address
             const sendersEmail = sendersHeader.match(/<([^>]+)>/)[1];
 
 

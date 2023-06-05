@@ -1,3 +1,10 @@
+/**
+ * @module app
+ * consists of  @function sendReply
+ * consists of  @function checkPriorReply
+ * consists of  @function addLabel
+ */
+
 'use strict';
 
 // importing modules and libraries
@@ -15,7 +22,13 @@ const TOKEN_DIR = constant.baseDir() + '/config';
 const TOKEN_PATH = TOKEN_DIR + '/token.json'; // Specify the access token file
 
 
-// Method to send the mail with given mail id and reply message
+/**
+ * performs the opertion of sending the reply to the given email,
+ * and the reply same as input
+ * @param {string} email 
+ * @param {string} reply 
+ * @returns {object}
+ */
 exports.sendReply = async (email, reply) => {
 
     // authentication part 
@@ -48,8 +61,11 @@ exports.sendReply = async (email, reply) => {
 
 
 
-
-// Method to check whether the mail has prior reply or not
+/**
+ * checks whether the email with the given thread id is prior replied or not
+ * @param {string} threadId 
+ * @returns {boolean}
+ */
 exports.checkPriorReply = async (threadId) => {
 
     // authentication part 
@@ -90,7 +106,12 @@ exports.checkPriorReply = async (threadId) => {
 
 
 
-// Mehtod to add the automatically replied mail to autmatically generated Label
+/**
+ * Adds the lable to the email with the given threadId if the lable is not,
+ * present then it creates ther lable aith given lableName also
+ * @param {string} threadId 
+ * @param {string} labelName 
+ */
 exports.addLabel = async (threadId, labelName) => {
 
     // authentication part 

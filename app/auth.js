@@ -1,3 +1,8 @@
+/**
+ * @module auth
+ * consiste of @function authenticate
+ */
+
 'use strict';
 
 // importing modules and libraries
@@ -10,7 +15,6 @@ const rl = readline.createInterface({
 });
 
 const {promisify} = require('util'); // promises for return of callbacks
-
 const {google} = require('googleapis');  // gmail api
 const {OAuth2Client} = require('google-auth-library');
 
@@ -27,7 +31,12 @@ const TOKEN_PATH = TOKEN_DIR+'/token.json';
 
 
 
-// Method used to Login the user in the app
+/**
+ * perfroms the authentication of the new usee and generated the access tokens for the,
+ * user that will be used by the gmail api to reply and add lable to the mail.
+ * @function authenticate
+ * @memberof module:auth
+ */
 exports.authenticate = async () => {
 
     // Reading the config file of the client
